@@ -1,15 +1,20 @@
 # Kaggle_HousePrices
-Project code for Kaggle Competition: House Prices - Advanced Regression Techniques<br>
+Project code for Kaggle Competition: House Prices - Advanced Regression Techniques [Competition Link](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)
+
 
 Folders:
 * ```Data```: Contains data files from Kaggle
 * ```Preprocessed Data```: Contains CSV files with data that have already been preprocessed.
 * ```Solution```: Contains files with prediction results on the test set. Data in solution file is in a format that is accepted by Kaggle.
-
 <br>
 
-Code File Summary:<br>
+Code File Summary:
 * ```preprocess_main.py```: Script for processing training and test data from Kaggle. Outputs preprocessed CSV data files in the ```Preprocessed Data``` folder.
 * ```model_main.py```: File containing model code. Outputs ```Solution\solution.csv``` that can be submitted to Kaggle.
 * ```helper.py```: File for containing useful helper function that can be used in any other code files.
 <br>
+
+Credits: <br>
+Below are codes we referenced when creating our solution.
+* <https://www.kaggle.com/code/juliencs/a-study-on-regression-applied-to-the-ames-dataset>
+* <https://www.kaggle.com/code/apapiu/regularized-linear-models>

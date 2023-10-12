@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from hyperopt import STATUS_OK, Trials, fmin, hp, tpe
 from hyperopt.pyll.base import scope
+import numpy as np
 import helper
 
 # ==== Configs ====
@@ -15,6 +16,9 @@ PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
 NUM_FOLD_CROSS_VALIDATION = 10      # No. of folds for k-fold cross validation
 VALIDATION_SET_SPLIT = 0.2          # Percentage of training set to be used as validation set
 TRAIN_VALID_SPLIT_RANDOMSEED = 0    # Random seed use for train-validation set split
+
+# Hyperopt Config
+RSTATE_SEED = 123
 
 
 # ==== Main Function of this Script ====
@@ -63,7 +67,8 @@ if __name__ == "__main__":
                             space = space,
                             algo = tpe.suggest,
                             max_evals = 30,
-                            trials = trials)
+                            trials = trials,
+                            rstate = np.random.default_rng(RSTATE_SEED))
 
     print("The best hyperparameters are : ","\n")
     print(best_hyperparams)

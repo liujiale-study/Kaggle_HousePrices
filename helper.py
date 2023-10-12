@@ -1,5 +1,4 @@
 import os
-import pandas as pd
 from sklearn.metrics import mean_squared_error
 
 # Checks output folder exist and creates it if it doesnt

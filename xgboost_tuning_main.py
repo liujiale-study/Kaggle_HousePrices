@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
 
     # Define the space over which hyperopt will search for optimal hyperparameters.
-    space = {'max_depth': scope.int(hp.quniform("max_depth", 1, 5, 1)),
+    space = {'max_depth': scope.int(hp.quniform("max_depth", 1, 10, 1)),
         'colsample_bytree' : hp.uniform('colsample_bytree', 0,1),
         'min_child_weight' : hp.uniform('min_child_weight', 0, 5),
         'n_estimators': 1000,

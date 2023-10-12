@@ -4,18 +4,16 @@ import numpy as np
 from scipy.stats import skew
 import helper
 
-# Config
-TRAIN_DATA = "Data/train.csv"
+# ==== Configs ====
+
+# Files and Folders
 OUTPUT_DIR = "Preprocessed_Data"
-
+TRAIN_DATA = "Data/train.csv"
 OUTPUT_TRAIN_FILE = "pp_train.csv"
-
 TEST_DATA = "Data/test.csv"
 OUTPUT_TEST_FILE = "pp_test.csv"
 
-
-
-    
+# ==== Main Function of this Script ====
 if __name__ == "__main__":
     
     # Read CSVs

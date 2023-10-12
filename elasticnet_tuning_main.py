@@ -1,27 +1,22 @@
 # Credits: https://www.kaggle.com/code/juliencs/a-study-on-regression-applied-to-the-ames-dataset
 import pandas as pd
 import numpy as np
-from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 import xgboost as xgb
 from sklearn.linear_model import ElasticNetCV
+import helper
 
 # ==== Configs ====
 
 # Files and Folders
 PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
 
-
 # Validation
 NUM_FOLD_CROSS_VALIDATION = 10      # No. of folds for k-fold cross validation
 VALIDATION_SET_SPLIT = 0.2          # Percentage of training set to be used as validation set
 TRAIN_VALID_SPLIT_RANDOMSEED = 0    # Random seed use for train-validation set split
-
-# Calculate root mean squared error
-def get_rmse_score(y_true, y_pred):
-    return mean_squared_error(y_true, y_pred, squared = False)
     
-
+# ==== Main Function of this Script ====
 if __name__ == "__main__":
 
     # Load data
@@ -48,7 +43,7 @@ if __name__ == "__main__":
 
     # See performance on validation set
     y_pred = elasticNet.predict(x_valida)
-    print("RMSE Score on Validation Set: " + str(get_rmse_score(y_valida, y_pred)))
+    print("RMSE Score on Validation Set: " + str(helper.calc_rmse_score(y_valida, y_pred)))
 
     print("Try again for more precision with l1_ratio centered around " + str(ratio))
     elasticNet = ElasticNetCV(l1_ratio = [ratio * .85, ratio * .9, ratio * .95, ratio, ratio * 1.05, ratio * 1.1, ratio * 1.15],
@@ -64,7 +59,7 @@ if __name__ == "__main__":
 
     # See performance on validation set
     y_pred = elasticNet.predict(x_valida)
-    print("RMSE Score on Validation Set: " + str(get_rmse_score(y_valida, y_pred)))
+    print("RMSE Score on Validation Set: " + str(helper.calc_rmse_score(y_valida, y_pred)))
 
     print("Now try again for more precision on alpha, with l1_ratio fixed at " + str(ratio) + 
         " and alpha centered around " + str(alpha))
@@ -83,5 +78,5 @@ if __name__ == "__main__":
 
     # See performance on validation set
     y_pred = elasticNet.predict(x_valida)
-    print("RMSE Score on Validation Set: " + str(get_rmse_score(y_valida, y_pred)))
+    print("RMSE Score on Validation Set: " + str(helper.calc_rmse_score(y_valida, y_pred)))
 

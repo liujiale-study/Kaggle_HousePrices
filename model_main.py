@@ -6,7 +6,9 @@ import numpy as np
 import xgboost as xgb
 import helper
 
-# Configs
+# ==== Configs ====
+
+# Files and Folders
 PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
 PREPROCESSED_TEST_DATA = "Preprocessed_Data/pp_test.csv"
 OUTPUT_DIR = "Solution"
@@ -23,8 +25,10 @@ XGB_BEST_MIN_CHILD_W = 3.410127806576199
 XGB_BEST_LEARN_RATE = 0.12749285149567202
 
 # Weightage Between Models
+# TODO: Grid Search a Better Weight
 MODEL_WEIGHT_XGB = 0.3 # Final Predictions = weight * XGB Predictions + (1-weight) * ElasticNet Predictions
 
+# ==== Main Function of this Script ====
 if __name__ == "__main__":
 
     # Load data
@@ -37,24 +41,25 @@ if __name__ == "__main__":
     x_test = test_data.drop(columns=["Id"])
 
 
-    # Setup elasticNet Model
+    # ElasticNet Setup and Fit
     alpha = ELASTICNET_BEST_ALPHA
     elasticNet = ElasticNet(alpha = ELASTICNET_BEST_ALPHA, l1_ratio = ELASTICNET_BEST_L1)
     elasticNet.fit(x_train, y_train)
 
-    # XGBoost
+    # XGBoost Setup and Fit
     model_xgb = xgb.XGBRegressor(n_estimators=XGB_N_ESTIMATOR, max_depth=XGB_BEST_MAX_DEPTH, learning_rate=XGB_BEST_LEARN_RATE,
                                  colsample_bytree=XGB_BEST_COLSAMPLE, min_child_weight=XGB_BEST_MIN_CHILD_W)
     model_xgb.fit(x_train, y_train)
 
+    # Predictions
     xgb_preds = np.expm1(model_xgb.predict(x_test))
     elasticNet_preds = np.expm1(elasticNet.predict(x_test))
-
     preds = (1-MODEL_WEIGHT_XGB)*elasticNet_preds + MODEL_WEIGHT_XGB*xgb_preds
 
+    # Datafram with solution
     solution = pd.DataFrame({"Id":ids_test, "SalePrice": preds})
     
-    # Ensure output folder exist
+    # Ensure output folder exist and output to CSV
     helper.validate_output_folder(OUTPUT_DIR)
     helper.output_dataframe_to_folder(solution, OUTPUT_DIR, OUTPUT_FILENAME)
 

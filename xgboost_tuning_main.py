@@ -4,15 +4,14 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
-# import packages for hyperparameters tuning
 from hyperopt import STATUS_OK, Trials, fmin, hp, tpe
 from hyperopt.pyll.base import scope
+import helper
 
 # ==== Configs ====
 
 # Files and Folders
 PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
-
 
 # Validation
 NUM_FOLD_CROSS_VALIDATION = 10      # No. of folds for k-fold cross validation
@@ -20,6 +19,7 @@ VALIDATION_SET_SPLIT = 0.2          # Percentage of training set to be used as v
 TRAIN_VALID_SPLIT_RANDOMSEED = 0    # Random seed use for train-validation set split
 
 
+# ==== Main Function of this Script ====
 if __name__ == "__main__":
 
     # Load data
@@ -31,12 +31,14 @@ if __name__ == "__main__":
     x_train, x_valida, y_train, y_valida = train_test_split(x_train_full, y_train_full, test_size = VALIDATION_SET_SPLIT, random_state = TRAIN_VALID_SPLIT_RANDOMSEED)
 
 
-    #Define the space over which hyperopt will search for optimal hyperparameters.
+    # Define the space over which hyperopt will search for optimal hyperparameters.
     space = {'max_depth': scope.int(hp.quniform("max_depth", 1, 5, 1)),
         'colsample_bytree' : hp.uniform('colsample_bytree', 0,1),
         'min_child_weight' : hp.uniform('min_child_weight', 0, 5),
         'n_estimators': 1000,
-        'learning_rate': hp.uniform('learning_rate', 0, .15)}
+        'learning_rate': hp.uniform('learning_rate', 0, .15),
+        'eval_metric':"rmse",
+        'early_stopping_rounds':100}
 
 
     # Define the hyperopt objective.
@@ -44,16 +46,14 @@ if __name__ == "__main__":
         model = xgb.XGBRegressor(**space)
         
         # Define evaluation datasets.
-        evaluation = [(x_train, y_train), (x_valida, y_valida)]
+        evaluation = [(x_valida, y_valida)]
         
-        # Fit the model. Define evaluation sets, early_stopping_rounds, and eval_metric.
-        model.fit(x_train, y_train,
-                eval_set=evaluation, eval_metric="rmse",
-                early_stopping_rounds=100,verbose=False)
+        # Fit the model. Define evaluation sets
+        model.fit(x_train, y_train, eval_set=evaluation, verbose=False)
 
         # Obtain prediction and rmse score.
         pred = model.predict(x_valida)
-        rmse = mean_squared_error(y_valida, pred, squared=False)
+        rmse = helper.calc_rmse_score(y_valida, pred)
         print ("SCORE:", rmse)
         
         # Specify what the loss is for each model.
@@ -69,7 +69,3 @@ if __name__ == "__main__":
 
     print("The best hyperparameters are : ","\n")
     print(best_hyperparams)
-
-    #Create instace of best model.
-    best_model = trials.results[np.argmin([r['loss'] for r in 
-        trials.results])]['model']

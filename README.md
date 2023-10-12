@@ -11,6 +11,8 @@ Project code for Kaggle Competition: House Prices - Advanced Regression Techniqu
 ### Code File Summary
 * ```preprocess_main.py```: Script for processing training and test data from Kaggle. Outputs preprocessed CSV data files in the ```Preprocessed Data``` folder.
 * ```model_main.py```: Script with model code. Outputs ```Solution\solution.csv``` that can be submitted to Kaggle.
+* ```elasticnet_tuning_main.py```: Script for finding best hyperparameters for ElasticNet
+* ```xgboost_tuning_main.py```: Script for finding best hyperparameters for XGBoost
 * ```helper.py```: Script with various utility functions that can be used in any other code files.
 <br>
 

@@ -17,7 +17,7 @@ PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
 # Validation
 NUM_FOLD_CROSS_VALIDATION = 10      # No. of folds for k-fold cross validation
 VALIDATION_SET_SPLIT = 0.2          # Percentage of training set to be used as validation set
-
+TRAIN_VALID_SPLIT_RANDOMSEED = 0    # Random seed use for train-validation set split
 
 
 if __name__ == "__main__":
@@ -28,7 +28,7 @@ if __name__ == "__main__":
     x_train_full = train_data.drop(columns=["Id","SalePrice"])
 
     # Partition training and validation sets
-    x_train, x_valida, y_train, y_valida = train_test_split(x_train_full, y_train_full, test_size = VALIDATION_SET_SPLIT, random_state = 0)
+    x_train, x_valida, y_train, y_valida = train_test_split(x_train_full, y_train_full, test_size = VALIDATION_SET_SPLIT, random_state = TRAIN_VALID_SPLIT_RANDOMSEED)
 
 
     #Define the space over which hyperopt will search for optimal hyperparameters.

@@ -13,7 +13,7 @@ OUTPUT_DIR = "Solution"
 OUTPUT_FILENAME = "solution.csv"
 
 # Model Params
-ELASTICNET_BEST_ALPHA = 0.0006
+ELASTICNET_BEST_ALPHA = 0.0006  # Note: Took best validation set result
 ELASTICNET_BEST_L1 = 0.735
 
 XGB_N_ESTIMATOR = 1000

@@ -15,6 +15,7 @@ PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
 # Validation
 NUM_FOLD_CROSS_VALIDATION = 10      # No. of folds for k-fold cross validation
 VALIDATION_SET_SPLIT = 0.2          # Percentage of training set to be used as validation set
+TRAIN_VALID_SPLIT_RANDOMSEED = 0    # Random seed use for train-validation set split
 
 # Calculate root mean squared error
 def get_rmse_score(y_true, y_pred):
@@ -31,7 +32,7 @@ if __name__ == "__main__":
     
 
     # Partition training and validation sets
-    x_train, x_valida, y_train, y_valida = train_test_split(x_train_full, y_train_full, test_size = VALIDATION_SET_SPLIT, random_state = 0)
+    x_train, x_valida, y_train, y_valida = train_test_split(x_train_full, y_train_full, test_size = VALIDATION_SET_SPLIT, random_state = TRAIN_VALID_SPLIT_RANDOMSEED)
 
 
     # Setup ElasticNet
@@ -47,7 +48,7 @@ if __name__ == "__main__":
 
     # See performance on validation set
     y_pred = elasticNet.predict(x_valida)
-    print("RMSE Score for on Validation Set: " + str(get_rmse_score(y_valida, y_pred)))
+    print("RMSE Score on Validation Set: " + str(get_rmse_score(y_valida, y_pred)))
 
     print("Try again for more precision with l1_ratio centered around " + str(ratio))
     elasticNet = ElasticNetCV(l1_ratio = [ratio * .85, ratio * .9, ratio * .95, ratio, ratio * 1.05, ratio * 1.1, ratio * 1.15],
@@ -63,7 +64,7 @@ if __name__ == "__main__":
 
     # See performance on validation set
     y_pred = elasticNet.predict(x_valida)
-    print("RMSE Score for on Validation Set: " + str(get_rmse_score(y_valida, y_pred)))
+    print("RMSE Score on Validation Set: " + str(get_rmse_score(y_valida, y_pred)))
 
     print("Now try again for more precision on alpha, with l1_ratio fixed at " + str(ratio) + 
         " and alpha centered around " + str(alpha))
@@ -82,5 +83,5 @@ if __name__ == "__main__":
 
     # See performance on validation set
     y_pred = elasticNet.predict(x_valida)
-    print("RMSE Score for on Validation Set: " + str(get_rmse_score(y_valida, y_pred)))
+    print("RMSE Score on Validation Set: " + str(get_rmse_score(y_valida, y_pred)))
 

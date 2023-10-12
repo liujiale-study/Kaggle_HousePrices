@@ -1,5 +1,4 @@
 # Credits: https://www.kaggle.com/code/apapiu/regularized-linear-models
-#          https://www.kaggle.com/code/juliencs/a-study-on-regression-applied-to-the-ames-dataset
 import pandas as pd
 import numpy as np
 from scipy.stats import skew

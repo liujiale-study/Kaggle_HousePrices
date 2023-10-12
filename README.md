@@ -16,5 +16,6 @@ Code File Summary:
 
 Credits: <br>
 Below are codes we referenced when creating our solution.
-* <https://www.kaggle.com/code/juliencs/a-study-on-regression-applied-to-the-ames-dataset>
-* <https://www.kaggle.com/code/apapiu/regularized-linear-models>
+* ElasticNet and its Hyperparameter Tuning: <https://www.kaggle.com/code/juliencs/a-study-on-regression-applied-to-the-ames-dataset>
+* Data Preprocessing and Creating Solution from 2 Models: <https://www.kaggle.com/code/apapiu/regularized-linear-models>
+* XGBoost Hyperparameter Tuning: <https://www.kaggle.com/code/merrickolivier/hyperopt-and-xgbregressor-bayesian-optimization>

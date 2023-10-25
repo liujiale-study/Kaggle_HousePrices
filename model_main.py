@@ -20,9 +20,9 @@ ELASTICNET_BEST_L1 = 0.735
 
 XGB_N_ESTIMATOR = 1000
 XGB_BEST_MAX_DEPTH = 5
-XGB_BEST_COLSAMPLE = 0.4303636649653825
-XGB_BEST_MIN_CHILD_W = 0.7570175735197103
-XGB_BEST_LEARN_RATE = 0.021123244114254203
+XGB_BEST_COLSAMPLE = 0.430363
+XGB_BEST_MIN_CHILD_W = 0.757017
+XGB_BEST_LEARN_RATE = 0.021123
 
 # Weightage Between Models
 # TODO: Grid Search a Better Weight
@@ -42,7 +42,6 @@ if __name__ == "__main__":
 
 
     # ElasticNet Setup and Fit
-    alpha = ELASTICNET_BEST_ALPHA
     elasticNet = ElasticNet(alpha = ELASTICNET_BEST_ALPHA, l1_ratio = ELASTICNET_BEST_L1)
     elasticNet.fit(x_train, y_train)
 

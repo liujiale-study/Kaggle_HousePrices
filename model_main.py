@@ -25,7 +25,6 @@ XGB_BEST_MIN_CHILD_W = 0.757017
 XGB_BEST_LEARN_RATE = 0.021123
 
 # Weightage Between Models
-# TODO: Grid Search a Better Weight
 MODEL_WEIGHT_XGB = 0.3 # Final Predictions = weight * XGB Predictions + (1-weight) * ElasticNet Predictions
 
 # ==== Main Function of this Script ====

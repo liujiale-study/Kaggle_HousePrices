@@ -13,7 +13,6 @@ import helper
 PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
 
 # Validation
-NUM_FOLD_CROSS_VALIDATION = 10      # No. of folds for k-fold cross validation
 VALIDATION_SET_SPLIT = 0.2          # Percentage of training set to be used as validation set
 TRAIN_VALID_SPLIT_RANDOMSEED = 0    # Random seed use for train-validation set split
 

@@ -1,4 +1,7 @@
-# Credits: https://www.kaggle.com/code/juliencs/a-study-on-regression-applied-to-the-ames-dataset
+# Step 2: Fine-tune ElasticNet
+# Split original training data into train and validation set
+# Find best hyperparamters on training and validation set
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNetCV
@@ -9,10 +12,12 @@ import helper
 # Files and Folders
 PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
 
-# Validation
-NUM_FOLD_CROSS_VALIDATION = 10      # No. of folds for k-fold cross validation
+# Train-Validation Data Split
 VALIDATION_SET_SPLIT = 0.2          # Percentage of training set to be used as validation set
 TRAIN_VALID_SPLIT_RANDOMSEED = 0    # Random seed use for train-validation set split
+
+# Validation Algo Configs
+NUM_FOLD_CROSS_VALIDATION = 10      # No. of folds for k-fold cross validation
     
 # ==== Main Function of this Script ====
 if __name__ == "__main__":

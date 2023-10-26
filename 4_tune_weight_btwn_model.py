@@ -1,31 +1,37 @@
+# Step 4: Fine-tune Weight for Model Results
+# Split original training data into train and validation set
+# Final Predictions is calculated as: weight * XGB Predictions + (1-weight) * ElasticNet Predictions
+# Find the best weight for the equation above
+
 import xgboost as xgb
 from sklearn.linear_model import ElasticNet
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from hyperopt import STATUS_OK, Trials, fmin, hp, tpe
-from hyperopt.pyll.base import scope
-import numpy as np
 import helper
 
-# ==== Configs ====
+# ==== Model Configs ====
+# ==== FILL IN THIS SECTION WITH RESULTS FROM STEP 2 & 3 ====
 
-# Files and Folders
-PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
-
-# Validation
-VALIDATION_SET_SPLIT = 0.2          # Percentage of training set to be used as validation set
-TRAIN_VALID_SPLIT_RANDOMSEED = 123    # Random seed use for train-validation set split
-
-# Model Params
+# ElasticNet Best Params
 ELASTICNET_BEST_ALPHA = 0.0006  # Note: Took best validation set result
 ELASTICNET_BEST_L1 = 0.735
 
+# XGBoost Best Params
 XGB_N_ESTIMATOR = 1000
 XGB_BEST_MAX_DEPTH = 5
 XGB_BEST_COLSAMPLE = 0.430363
 XGB_BEST_MIN_CHILD_W = 0.757017
 XGB_BEST_LEARN_RATE = 0.021123
 
+
+# ==== Misc Configs ====
+
+# Files and Folders
+PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
+
+# Validation
+VALIDATION_SET_SPLIT = 0.2           # Percentage of training set to be used as validation set
+TRAIN_VALID_SPLIT_RANDOMSEED = 1    # Random seed use for train-validation set split
 
 
 # ==== Main Function of this Script ====
@@ -52,7 +58,7 @@ if __name__ == "__main__":
     xgb_preds = model_xgb.predict(x_valida)
     elasticNet_preds = elasticNet.predict(x_valida)
 
-    arr_weights = [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+    arr_weights = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
     arr_rmse = []
     for weight in arr_weights:
         preds = (1-weight)*elasticNet_preds + weight*xgb_preds
@@ -63,4 +69,3 @@ if __name__ == "__main__":
     best_weight = arr_weights[index_of_best_score]
 
     print("Best weight: " + str(best_weight))
-    print(arr_rmse)

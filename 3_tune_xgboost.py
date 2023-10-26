@@ -1,4 +1,7 @@
-# Credits: https://www.kaggle.com/code/merrickolivier/hyperopt-and-xgbregressor-bayesian-optimization
+# Step 3: Fine-tune XGBoost
+# Split original training data into train and validation set
+# Find best hyperparamters on training and validation set
+
 import xgboost as xgb
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -12,7 +15,7 @@ import helper
 # Files and Folders
 PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"
 
-# Validation
+# Train-Validation Data Split
 VALIDATION_SET_SPLIT = 0.2          # Percentage of training set to be used as validation set
 TRAIN_VALID_SPLIT_RANDOMSEED = 0    # Random seed use for train-validation set split
 

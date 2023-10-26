@@ -1,3 +1,5 @@
+# Script with commonly used helper functions for other scripts in this project
+
 import os
 from sklearn.metrics import mean_squared_error
 

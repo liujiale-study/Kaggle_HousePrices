@@ -1,4 +1,7 @@
-# Credits: https://www.kaggle.com/code/apapiu/regularized-linear-models
+# Step 1: Data Pre-Processing
+# Process raw training and test data from Kaggle
+# Output resulting pre-processed data to CSV for other scripts to use
+
 import pandas as pd
 import numpy as np
 from scipy.stats import skew

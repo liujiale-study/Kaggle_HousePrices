@@ -27,7 +27,7 @@ XGB_BEST_LEARN_RATE = 0.021123
 MODEL_WEIGHT_XGB = 0.4  # Final Predictions = weight * XGB Predictions + (1-weight) * ElasticNet Predictions
 
 
-# ==== Configs ====
+# ==== Misc Configs ====
 
 # Files and Folders
 PREPROCESSED_TRAIN_DATA = "Preprocessed_Data/pp_train.csv"

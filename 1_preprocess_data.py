@@ -23,7 +23,7 @@ if __name__ == "__main__":
     train = pd.read_csv(TRAIN_DATA)
     test = pd.read_csv(TEST_DATA)
     
-    # Concat all data
+    # Concat all data for model input
     all_data = pd.concat((train.loc[:,'MSSubClass':'SaleCondition'],
                       test.loc[:,'MSSubClass':'SaleCondition']))
     
@@ -34,12 +34,15 @@ if __name__ == "__main__":
     # Numeric Feature Processing
     numeric_feats = all_data.dtypes[all_data.dtypes != "object"].index
     
-    # Log transform skewed numeric features:
+    # Get skewed features
     skewed_feats = train[numeric_feats].apply(lambda x: skew(x.dropna())) #compute skewness
     skewed_feats = skewed_feats[skewed_feats > 0.75]
     skewed_feats = skewed_feats.index
 
+    # Log transform skewed numeric features:
     all_data[skewed_feats] = np.log1p(all_data[skewed_feats])
+
+    # Use dummy columns to create one-hot encoding for categorical features
     all_data = pd.get_dummies(all_data)
     
     # Filling remaining NA's with the mean of the column:

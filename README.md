@@ -1,6 +1,5 @@
-# Kaggle_HousePrices
-Project code for Kaggle Competition: House Prices - Advanced Regression Techniques [\[Competition Link\]](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)
-
+# Kaggle Competition: House Prices
+This repository contains our code implementation for Kaggle Competition: House Prices - Advanced Regression Techniques [\[Competition Link\]](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)
 
 ### Folders
 * ```Data```: Contains data files from Kaggle

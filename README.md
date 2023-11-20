@@ -1,5 +1,6 @@
 # Kaggle Competition: House Prices
 This repository contains our code implementation for Kaggle Competition: House Prices - Advanced Regression Techniques [\[Competition Link\]](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)
+<br>
 
 ### Requirements
 This project is developed in a Python 3.9.18 environment. Please also install the following Python libraries.
@@ -10,6 +11,7 @@ scikit-learn
 xgboost
 hyperopt
 ```
+<br>
 
 ### Folders
 * ```Data```: Contains data files from Kaggle
@@ -41,7 +43,6 @@ Scripts are numbered based on the sequence to run them. Follow the sequence belo
 The following script(s) can be imported into other scripts in this project to utilize the functions within them.
 * ```helper.py```
     - Script with functions for file I/O (e.g. output dataframe to CSV) and ML-related calculations (e.g. RMSE calculation)
-
 <br>
 
 ### Credits

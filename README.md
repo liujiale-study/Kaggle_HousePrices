@@ -9,7 +9,7 @@ This repository contains our code implementation for Kaggle Competition: House P
 
 ### How to Use
 #### Procedure for Generating Solution for Submission to Kaggle
-Scripts are numbered by the sequence to run them. Follow the following sequence and any additional configuration changes where necessary.
+Scripts are numbered based on the sequence to run them. Follow the sequence below and make changes to the config section of individual scripts where necessary.
 1. ```1_preprocess_data.py```
     - Script for processing training and test data from Kaggle. (Data from Kaggle should be included in the ```Data``` folder.)
     - Outputs preprocessed CSV data files in the ```Preprocessed Data``` folder.
@@ -19,13 +19,13 @@ Scripts are numbered by the sequence to run them. Follow the following sequence 
     - Script for finding best hyperparameters for XGBoost
 1. ```4_tune_weight_btwn_model.py```
     - <b>Before running this script, remember to fill in the best hyperparameters for each model</b>
-    - Final predictions is created by a weighted sum of XGBoost predictions and ElasticNet predictions
-    - The weight used for creating this weighted sum is tuned in this script
+    - Final predictions are created through a weighted sum of XGBoost predictions and ElasticNet predictions
+    - The weight used in creating this weighted sum is tuned in this script
 1. ```5_model_main.py```:
     - <b>Before running this script, remember to fill in the best model hyperparameters and the weight used for creating weighted results</b>
     - Trains ElasticNet and XGBoost on the training data and obtain predictions from each model on the test data
-    - Final predictions is created by a weighted sum of XGBoost predictions and ElasticNet predictions
-    - Outputs final predictions to ```Solution\solution.csv``` that can be submitted to Kaggle.
+    - Final predictions are created through a weighted sum of XGBoost predictions and ElasticNet predictions
+    - This script outputs final predictions to ```Solution\solution.csv``` which can be submitted to Kaggle.
 
 #### Utility Script
 The following script(s) can be imported into other scripts in this project to utilize the functions within them.
@@ -35,7 +35,7 @@ The following script(s) can be imported into other scripts in this project to ut
 <br>
 
 ### Credits
-Below are codes we referenced when creating our solution.
+Below are open-source code we referenced when creating our solution.
 * ElasticNet and its Hyperparameter Tuning: <https://www.kaggle.com/code/juliencs/a-study-on-regression-applied-to-the-ames-dataset>
 * Data Preprocessing and Creating Solution from 2 Models: <https://www.kaggle.com/code/apapiu/regularized-linear-models>
 * XGBoost Hyperparameter Tuning: <https://www.kaggle.com/code/merrickolivier/hyperopt-and-xgbregressor-bayesian-optimization>
